@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="4-complex-relations" author="Developer_4">
+        <createTable tableName="sales">
+            <column name="id" type="integer" autoIncrement="true"><constraints primaryKey="true"/></column>
+            <column name="car_id" type="bigint">
+                <constraints foreignKeyName="fk_sales_car" referencedTableName="cars" referencedColumnNames="id"/>
+            </column>
+            <column name="customer_id" type="integer">
+                <constraints foreignKeyName="fk_sales_customer" referencedTableName="customers" referencedColumnNames="id"/>
+            </column>
+            <column name="dealership_id" type="integer">
+                <constraints foreignKeyName="fk_sales_dealer" referencedTableName="dealerships" referencedColumnNames="id"/>
+            </column>
+            <column name="sale_date" type="date"/>
+            <column name="final_price" type="numeric"/>
+        </createTable>
+
+        <createTable tableName="car_options">
+            <column name="id" type="integer" autoIncrement="true"><constraints primaryKey="true"/></column>
+            <column name="car_id" type="bigint">
+                <constraints foreignKeyName="fk_options_car" referencedTableName="cars" referencedColumnNames="id"/>
+            </column>
+            <column name="option_name" type="varchar(100)"/>
+            <column name="additional_cost" type="numeric"/>
+        </createTable>
+
+        <addColumn tableName="cars">
+            <column name="manufacturer_name_cached" type="varchar(100)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
