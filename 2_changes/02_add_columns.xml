@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.25.xsd">
+
+    <changeSet id="2-customers-dealers" author="Developer_2">
+        <createTable tableName="customers">
+            <column name="id" type="integer" autoIncrement="true"><constraints primaryKey="true"/></column>
+            <column name="full_name" type="varchar(255)"><constraints nullable="false"/></column>
+            <column name="email" type="varchar(100)"/>
+            <column name="phone" type="varchar(20)"/>
+        </createTable>
+
+        <createTable tableName="dealerships">
+            <column name="id" type="integer" autoIncrement="true"><constraints primaryKey="true"/></column>
+            <column name="name" type="varchar(150)"><constraints nullable="false"/></column>
+            <column name="address" type="varchar(255)"/>
+            <column name="city" type="varchar(100)"/>
+        </createTable>
+
+        <addColumn tableName="cars">
+            <column name="year_of_production" type="int"/>
+            <column name="color" type="varchar(30)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
